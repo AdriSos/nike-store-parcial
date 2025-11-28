@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tu Carrito</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>CARRITO</h1>
+        <nav>
+            <a href="/"> < Volver a la tienda</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <% if (cart.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Detalle</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><img src="<%= item.image %>" style="width: 60px; height: 60px;"></td>
+                            <td><%= item.name %></td>
+                            <td style="color: var(--neon-green);">$<%= item.price %></td>
+                            <td>
+                                <button class="btn-action" onclick="updateCart('<%= item.id %>', 'decrease')">-</button>
+                                <span style="margin: 0 10px;"><%= item.quantity %></span>
+                                <button class="btn-action" onclick="updateCart('<%= item.id %>', 'increase')">+</button>
+                            </td>
+                            <td>$<%= item.price * item.quantity %></td>
+                            <td>
+                                <button class="btn btn-danger" style="padding: 5px 10px; width: auto;" onclick="updateCart('<%= item.id %>', 'remove')">X</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+            <div style="text-align: right; margin-top: 30px;">
+                <h2 style="font-size: 2rem;">Total: <span style="color: var(--neon-green);">$<%= cartTotal %></span></h2>
+                
+                <% if (user) { %>
+                    <form action="/checkout" method="POST">
+                        <button type="submit" class="btn" style="width: auto; display: inline-block; font-size: 1.2rem; padding: 15px 40px;">PAGAR AHORA</button>
+                    </form>
+                <% } else { %>
+                    <p style="color: #ff3333;">Debes iniciar sesión para completar la compra.</p>
+                    <a href="/login" class="btn" style="width: auto; display: inline-block;">Ir al Login</a>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div style="text-align: center; padding: 50px;">
+                <h2 style="color: #555;">Tu carrito está vacío</h2>
+                <a href="/" class="btn" style="width: 200px; margin: 20px auto;">Ir a comprar</a>
+            </div>
+        <% } %>
+    </div>
+
+    <script>
+        function updateCart(id, action) {
+            fetch('/update-cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, action })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) location.reload();
+            });
+        }
+    </script>
+
+</body>
+</html>

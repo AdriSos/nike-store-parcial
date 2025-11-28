@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Compras</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>HISTORIAL</h1>
+        <nav>
+            <a href="/"> < Volver</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <% if (orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <span>ORDEN #<%= order.id %></span>
+                        <span><%= new Date(order.date).toLocaleDateString() %></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="color: #777;">Estado:</span> <span style="color: var(--neon-green);">Completado</span>
+                        </div>
+                        <div style="font-size: 1.5rem;">
+                            Total: <span style="color: var(--neon-green); font-weight: bold;">$<%= order.total %></span>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p style="text-align: center;">No tienes compras registradas.</p>
+        <% } %>
+    </div>
+</body>
+</html>

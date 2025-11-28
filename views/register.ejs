@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Nike</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h2>REGISTRO</h2>
+            <form action="/register" method="POST">
+                <input type="text" name="username" placeholder="Nombre de usuario" required>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn" style="margin-top: 20px;">CREAR CUENTA</button>
+            </form>
+
+            <div style="margin-top: 20px; text-align: center; font-size: 0.9rem;">
+                <p>¿Ya tienes cuenta? <a href="/login" class="link">Inicia Sesión</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

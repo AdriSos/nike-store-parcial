@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Nike</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h2>INICIAR SESIÓN</h2>
+            <% if (message) { %> <p style="color: #ff3333; text-align:center"><%= message %></p> <% } %>
+            
+            <form action="/login" method="POST">
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn" style="margin-top: 20px;">ENTRAR</button>
+            </form>
+
+            <div style="margin-top: 20px; text-align: center; font-size: 0.9rem;">
+                <p>¿Nuevo aquí? <a href="/register" class="link">Crear cuenta</a></p>
+                <a href="/" class="link">Volver a la tienda</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
