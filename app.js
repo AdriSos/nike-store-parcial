@@ -37,6 +37,10 @@ app.use((req, res, next) => {
 
 // --- RUTAS ---
 
+app.get('/health', (req, res) => {
+  res.send('Servidor activo en Railway');
+});
+
 // 1. Catálogo (Home)
 app.get('/', (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
