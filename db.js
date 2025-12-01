@@ -1,11 +1,12 @@
 const mysql = require('mysql2');
 
 // Ajusta usuario y password según tu configuración de XAMPP
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root', 
-    password: '', 
-    database: 'nike_store'
+mysql.createConnection({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
 });
 
 connection.connect((err) => {
