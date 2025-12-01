@@ -161,7 +161,7 @@ app.post('/checkout', (req, res) => {
         doc.pipe(res);
         
         // Diseño del Ticket
-        doc.font('Helvetica-Bold').fontSize(20).text('NIKE STORE', { align: 'center' });
+        doc.font('Helvetica-Bold').fontSize(20).text('FerxxoLover', { align: 'center' });
         doc.moveDown();
         doc.fontSize(12).text(`Ticket de Compra #${orderId}`);
         doc.text(`Cliente: ${req.session.user.username}`);
