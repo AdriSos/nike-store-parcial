@@ -37,6 +37,10 @@ app.use((req, res, next) => {
 
 // --- RUTAS ---
 
+app.get('/health', (req, res) => {
+  res.send('Servidor activo en Railway');
+});
+
 // 1. Catálogo (Home)
 app.get('/', (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
@@ -196,6 +200,7 @@ app.get('/history', (req, res) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT;
+console.log("Puerto: " + PORT);
 app.listen(PORT, () => {
-  console.log('Servidor corriendo en puerto ${PORT}');
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
