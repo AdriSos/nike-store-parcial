@@ -11,7 +11,7 @@ console.log({
 });
 
 // Crear conexión
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: process.env.MYSQL_URL ? process.env.MYSQL_URL.split("@")[1].split("/")[0].split(":")[0] : "mysql.railway.internal",
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
@@ -23,7 +23,7 @@ const connection = mysql.createConnection({
   queueLimit: 0
 });
 
-module.exports = pool;
+module.exports = connection;
 // Intentar conectar
 connection.connect((err) => {
   if (err) {
