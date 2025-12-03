@@ -16,9 +16,14 @@ const connection = mysql.createConnection({
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306
+  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306,
+
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
+module.exports = pool;
 // Intentar conectar
 connection.connect((err) => {
   if (err) {
