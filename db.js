@@ -24,13 +24,3 @@ const connection = mysql.createPool({
 });
 
 module.exports = connection;
-// Intentar conectar
-connection.connect((err) => {
-  if (err) {
-    console.error("Error conectando a MySQL:", err);
-    return;
-  }
-  console.log("Conectado a MySQL en Railway");
-});
-
-module.exports = connection;
